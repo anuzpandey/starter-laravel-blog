@@ -23,22 +23,32 @@
 					</tr>
 				</thead>
 				<tbody>
-					<tr>
-						<td>1</td>
-						<td>Category Name</td>
-						<td><code>category-name</code></td>
-						<td>
-							<label class="label success-label rounded-full">
-								Std Label
-							</label>
-						</td>
-						<td>
-							<div class="d-flex gap-3">
-								<a href="javascript:void(0)" class="btn btn-primary"> Edit </a>
-								<a href="javascript:void(0)" class="btn btn-danger"> Delete </a>
-							</div>
-						</td>
-					</tr>
+					@foreach($categories as $category)
+						<tr>
+							<!-- foreach in laravel gives a loop variable with many values like: index, even, odd, etc -->
+							<!-- So we can use $loop->index to generate ids (index starts with 0 so +1 is added -->
+							<td>{{ $loop->index + 1 }}</td>
+							<td>{{ $category->title }}</td>
+							<td><code>{{ $category->slug }}</code></td>
+							<td>
+								@if($category->status === TRUE)
+									<label class="label bg-primary text-white rounded-full">
+										Active
+									</label>
+								@else
+									<label class="label bg-danger text-white rounded-full">
+										Inactive
+									</label>
+								@endif
+							</td>
+							<td>
+								<div class="d-flex gap-3">
+									<a href="{{ route('cms.category.edit', $category) }}" class="btn btn-primary"> Edit </a>
+									<a href="{{ route('cms.category.destroy', $category) }}" class="btn btn-danger"> Delete </a>
+								</div>
+							</td>
+						</tr>
+					@endforeach
 				</tbody>
 			</table>
 		</div>
