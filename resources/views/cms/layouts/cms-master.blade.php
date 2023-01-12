@@ -27,6 +27,6 @@
 	
 	</section>
 	
-	<script src="https://cdn.ayroui.com/1.0/js/bootstrap.bundle.min.js"></script>
+	<script src="{{ asset('cms-assets/js/bootstrap.bundle.min.js') }}"></script>
 </body>
 </html>
