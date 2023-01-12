@@ -21,7 +21,7 @@
 		
 		@include('cms.layouts._partials.navigation')
 		
-		<div class="container">
+		<div class="container py-4">
 			@yield('content')
 		</div>
 	
