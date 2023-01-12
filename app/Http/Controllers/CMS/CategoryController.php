@@ -21,4 +21,28 @@ class CategoryController extends Controller
         // 1. return view('cms.categories.index', compact('categories'));
         // 2. return view('cms.categories.index')->with('categories', $categories);
     }
+
+
+    public function create()
+    {
+        return view('cms.categories.create');
+    }
+
+
+    public function store(Request $request)
+    {
+        $request->validate([
+            'title' => 'required|string|max:255',
+            'content' => 'nullable|string',
+            'status' => 'nullable'
+        ]);
+
+        Category::create([
+            'title' => $request['title'],
+            'content' => $request['content'],
+            'status' => $request->has('status') ? 1 : 0,
+        ]);
+
+        return redirect()->route('cms.categories.index');
+    }
 }
